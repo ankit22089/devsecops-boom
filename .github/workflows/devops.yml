@@ -12,12 +12,13 @@ jobs:
   code: 
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v4
+        - name: code checkout
+          uses: actions/checkout@v4
         
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Run a one-line script
+        - name: Code Build with docker
           run: echo Hello, world!
           
   test:
@@ -26,4 +27,11 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
+          echo test done successfully
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Deploy
+        run: echo "Code deploy done"
